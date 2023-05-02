@@ -30,8 +30,15 @@ export class SigninComponent {
     }
 
     this.authService.signin(this.authForm.value as SigninCredentials)
-      .subscribe(() => {});
+      .subscribe({
+        next: () =>{
 
+        },
+        error: ({ error }) =>{
+         if (error.username || error.password) {
+          this.authForm.setErrors({ credentials: true })
+         }
+        }
+      });
   }
-
 }
