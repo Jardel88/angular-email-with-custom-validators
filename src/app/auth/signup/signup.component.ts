@@ -3,6 +3,7 @@ import { MatchPassword } from './../validators/match-password';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UniqueUsername } from '../validators/unique-username';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -33,10 +34,10 @@ export class SignupComponent {
  constructor(
   private matchPassword: MatchPassword,
   private uniqueUsername: UniqueUsername,
-  private authService: AuthService
-  ){
+  private authService: AuthService,
+  private router: Router
+  ){}
 
- }
  onSubmit() {
   if (this.authForm.invalid) {
     return;
@@ -44,7 +45,7 @@ export class SignupComponent {
   this.authService.signup(this.authForm.value as SignupCredentials)
   .subscribe({
     next: response => {
-      console.log(this);
+      this.router.navigateByUrl('/inbox');
     },
     error: err => {
       if (!err.status) {
