@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AppComponent {
 
-  signedin$: BehaviorSubject<boolean>;
+  signedin$: BehaviorSubject<boolean | null>;
 
   constructor(private authService: AuthService) {
     this.signedin$ = this.authService.signedin$;
