@@ -7,6 +7,15 @@ interface EmailSumary {
   from: string;
 }
 
+interface Email {
+  id: string;
+  subject: string;
+  text: string;
+  to: string;
+  from: string;
+  html: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,5 +27,9 @@ export class EmailService {
 
   getEmails() {
     return this.http.get<EmailSumary[]>(`${this.baseUrl}/emails`);
+  }
+
+  getEmail(id: string) {
+    return this.http.get<Email>(`${this.baseUrl}/emails/${id}`);
   }
 }
