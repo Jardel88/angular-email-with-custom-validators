@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./email-create.component.css']
 })
 export class EmailCreateComponent {
+  showModal = false;
 
 }
