@@ -21,4 +21,8 @@ export class EmailCreateComponent {
       from: `${authService.username}@angular-email.com`,
     }
   }
+
+  onSubmit(email: Email) {
+
+  }
 }
