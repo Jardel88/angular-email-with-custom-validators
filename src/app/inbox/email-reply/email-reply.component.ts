@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Email } from '../email';
+import { EmailService } from '../email.service';
 
 @Component({
   selector: 'app-email-reply',
@@ -9,6 +10,8 @@ import { Email } from '../email';
 export class EmailReplyComponent implements OnInit{
   showModal = false;
   @Input() email!: Email;
+
+  constructor(private emailService: EmailService) {}
 
   ngOnInit() {
     const text = this.email.text.replace(/\n/, '\n> ')
@@ -23,7 +26,9 @@ export class EmailReplyComponent implements OnInit{
   }
 
   onSubmit(email: Email) {
-
+    this.emailService.sendEmail(email).subscribe(() => {
+      this.showModal = false;
+    });
   }
 
 }
